@@ -4,7 +4,7 @@ import images from '../../utils/images';
 import Image from '../Image/Image';
 
 class Game extends React.Component {
-
+    
     state = {
         images: images,
         selected: [],
@@ -12,13 +12,49 @@ class Game extends React.Component {
         high_score: 0
     };
 
-    shuffleList = e => {
+    shuffleList = (i) => {
+        console.log(i.id);
+        let shuffle = this.state.images.sort(() => Math.random() - 0.5);
+        if (this.state.selected.includes(i.id)) {
+            this.setState({
+                images: this.state.images,
+                selected: [],
+                your_score: 0,
+                high_score: this.state.your_score
+                // fix this bug - when the game ends, high score continues to get set as your score - even if it's lower
+            })
+        } else {
+            this.state.selected.push(i.id);
+            this.setState({
+                your_score: this.state.your_score + 1
+            })
+        }
+        console.log(this.state.selected);
 
-        console.log('You clicked me!');
-        console.log(this);
-        // this.setState({
-        //     your_score: this.state.your_score + 1
-        // })
+        this.setState({
+            images: shuffle
+        })
+    }
+
+    // resetGame = () => {
+    //     this.setState({
+    //         images: this.state.images,
+    //         selected: [],
+    //         your_score: 0,
+    //         high_score: this.newHighScore
+    //     })
+    // }
+
+    newHighScore = () => {
+        if (this.state.your_score > this.state.high_score) {
+            this.setState({
+                high_score: this.state.your_score
+            }) 
+        } else {
+            this.setState({
+                high_score: this.state.high_score
+            }) 
+        }
     }
 
     render() {
@@ -33,7 +69,7 @@ class Game extends React.Component {
                         return (
                             <Image 
                                 source={img.ref}
-                                chooseImage={() => this.shuffleList()}
+                                chooseImage={() => this.shuffleList(img)}
                             />
                         )
                     })}
