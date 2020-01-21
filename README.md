@@ -6,6 +6,8 @@
 
 ![](clicky-example.gif)
 
+---
+
 ## __App Structure__
 
 ### This app is structured into several components - the _Navbar_, _Game_, and _Image_ components.
@@ -22,7 +24,7 @@
     };
 ```
 
-### Likewise, the score is determined after each click with the __determineScore__ function:
+### Likewise, the score is determined after each click with the __determineScore__ function. If the user clicks the same image twice, the __resetGame__ function runs and resets the state of the application.
 
 ```
     determineScore = (i) => {
@@ -38,13 +40,14 @@
         this.shuffleList();
     }
 ```
-
+---
 ## __Technologies used__
 
 - React
+- JSX
 - Javascript
-- CSS
-
+- CSS / CSS Grid
+---
 ## __Collaborators__
 
 Matt Pignatore - mpaitgt
