@@ -21,3 +21,7 @@ img:active {
     transform: scale(1.05);
     transition: all 0.25s;
 }
+
+.image-item {
+    /* grid-template-areas: 2 / 3; */
+}

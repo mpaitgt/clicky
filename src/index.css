@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-image: url('https://americanvinylco.com/wp-content/uploads/2017/06/LabelsBlank-1024x1024.png');
+  background-position: center;
+  background-size: contain; */
 }
 
 code {

@@ -10,7 +10,7 @@ class Game extends React.Component {
         selected: [],
         your_score: 0,
         high_score: 0,
-        status: 'don\'t click any more than once.'
+        status: 'Click on an image below to earn points, but don\'t click any more than once.'
     };
 
 
@@ -27,26 +27,27 @@ class Game extends React.Component {
         } else {
             this.state.selected.push(i.id);
             this.setState({
-                your_score: this.state.your_score + 1
+                your_score: this.state.your_score + 1,
+                status: 'You guessed correctly!'
             })  
         }
         this.shuffleList();
     }
 
     resetGame = () => {
-        const status = document.getElementById('status');
         const board = document.getElementById('board');
 
         this.setState({
             images: this.state.images,
             selected: [],
             your_score: 0,
-            status: 'YOU CLICKED ONE MORE THAN ONCE!'
+            status: 'You guessed incorrectly and lost. Click to play again!'
         })
 
         board.classList.add('shakeup');
-        status.classList.add('you-lose');
-        setTimeout(function() { board.classList.remove('shakeup') }, 1000);
+        setTimeout(function() { 
+            board.classList.remove('shakeup');
+        }, 1000);
         this.newHighScore();
     }
 
@@ -66,7 +67,7 @@ class Game extends React.Component {
         return (
             <div className="game">
                 <div className="score">
-                    Click on an image below to earn points, but <span id="status">{this.state.status}</span>
+                    {this.state.status}
                     <h3>Your Score: {this.state.your_score} | High Score: {this.state.high_score}</h3>
                 </div>
                 <div id="board">

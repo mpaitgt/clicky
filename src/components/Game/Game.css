@@ -7,10 +7,14 @@
 
 .score {
     font-size: 20px;
+    padding: 10px;
 }
 
-.you-lose {
-    animation: loss 1s ease-in 0s 1 forwards;
+#board {
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-column-gap: 10px;
+    justify-content: center;
 }
 
 .shakeup {
@@ -18,11 +22,6 @@
     animation: shakeup;
     animation-duration: 0.3s;
     animation-iteration-count: 1;
-}
-
-@keyframes loss {
-    0% {color: #000000; transform: scale(1)}
-    100% {color: red; transform: scale(1.5)}
 }
 
 @keyframes shakeup {
