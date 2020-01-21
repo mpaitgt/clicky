@@ -1,16 +1,18 @@
 import React from 'react';
 import './Game.css';
-import images from '../../utils/images';
 import Image from '../Image/Image';
+import images from '../../utils/images';
 
 class Game extends React.Component {
-    
+
     state = {
         images: images,
         selected: [],
         your_score: 0,
-        high_score: 0
+        high_score: 0,
+        status: 'don\'t click any more than once.'
     };
+
 
     shuffleList = () => {
         let shuffle = this.state.images.sort(() => Math.random() - 0.5);
@@ -32,11 +34,19 @@ class Game extends React.Component {
     }
 
     resetGame = () => {
+        const status = document.getElementById('status');
+        const board = document.getElementById('board');
+
         this.setState({
             images: this.state.images,
             selected: [],
-            your_score: 0
+            your_score: 0,
+            status: 'YOU CLICKED ONE MORE THAN ONCE!'
         })
+
+        board.classList.add('shakeup');
+        status.classList.add('you-lose');
+        setTimeout(function() { board.classList.remove('shakeup') }, 1000);
         this.newHighScore();
     }
 
@@ -56,10 +66,10 @@ class Game extends React.Component {
         return (
             <div className="game">
                 <div className="score">
-                    Click on an image below to earn points, but don't click any more than once.
+                    Click on an image below to earn points, but <span id="status">{this.state.status}</span>
                     <h3>Your Score: {this.state.your_score} | High Score: {this.state.high_score}</h3>
                 </div>
-                <div className="board">
+                <div id="board">
                     {this.state.images.map(img => {
                         return (
                             <Image 

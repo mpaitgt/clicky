@@ -1,6 +1,35 @@
 .game {
     text-align: center;
-    margin-top: 4em;
     width: 70%;
     margin: 0 auto;
+    margin-top: 2em;
+}
+
+.score {
+    font-size: 20px;
+}
+
+.you-lose {
+    animation: loss 1s ease-in 0s 1 forwards;
+}
+
+.shakeup {
+    position: relative;
+    animation: shakeup;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+}
+
+@keyframes loss {
+    0% {color: #000000; transform: scale(1)}
+    100% {color: red; transform: scale(1.5)}
+}
+
+@keyframes shakeup {
+    0% {left: 0px}
+    20% {left: -10px}
+    40% {left: 10px}
+    60% {left: -10px}
+    80% {left: 10px}
+    100% {left: 0px}
 }
