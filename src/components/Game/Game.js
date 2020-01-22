@@ -13,7 +13,6 @@ class Game extends React.Component {
         status: 'Click on an image below to earn points, but don\'t click any more than once.'
     };
 
-
     shuffleList = () => {
         let shuffle = this.state.images.sort(() => Math.random() - 0.5);
         this.setState({
@@ -71,7 +70,7 @@ class Game extends React.Component {
                     <h3>Your Score: {this.state.your_score} | High Score: {this.state.high_score}</h3>
                 </div>
                 <div id="board">
-                    {this.state.images.map(img => {
+                    {this.state.images.map((img, index) => {
                         return (
                             <Image 
                                 source={img.ref}
